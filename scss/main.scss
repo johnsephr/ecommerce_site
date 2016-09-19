@@ -1,0 +1,239 @@
+// - - - - - - - mixins - - - - - - - //
+@mixin centerer($position:absolute) {
+    position: $position;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin v-center($position:relative) {
+    position: $position;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin h-center($position:relative) {
+    position: $position;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin bottom($position:relative) {
+    position: $position;
+    top: 100%;
+    transform: translateY(-105%);
+}
+
+@mixin inline($float:left) {
+    display: inline-block;
+    float: $float;
+    position: relative;
+}
+
+// - - - - - - - variables - - - - - - - //
+$main: #26272D;
+$secondary: #363743;
+$highlight: #4AD7B1;
+$white: #FFFFFF;
+// - - - - - - - global styles - - - - - - - //
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+    width: 1140px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+// - - - - - - - body styles - - - - - - - //
+.banner {
+    background: $main url(../images/banner_pattern_lg.png);
+    background-repeat: repeat;
+    h1 {
+        color: $white;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 2em 0;
+        font-size: 4.5em;
+        line-height: .85;
+    }
+}
+
+nav {
+    background: $secondary;
+    a,
+    label {
+        text-transform: uppercase;
+        font-size: 1.25em;
+        text-decoration: none;
+        color: $white;
+        font-weight: 700;
+        padding-right: 2em;
+    }
+    a:hover {
+        color: $highlight;
+        text-decoration: none;
+    }
+}
+
+label {
+    margin-right: 0;
+    border-right: 1px solid $highlight;
+    padding-right: 1.5em;
+    font-weight: 100;
+}
+
+input[type="search"] {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: $white;
+    font-style: italic;
+    font-size: 1.25em;
+    font-weight: 400;
+    padding: 2em 1em;
+}
+
+.resources {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+        overflow: hidden;
+        transition: transform 0.4s opacity 0.1s 0.3s;
+        @include inline;
+        width: 25%;
+        float: left;
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    li:hover {
+        img {
+            transform: scale(1.5);
+            transition: transform 0.4s, opacity 0.1s, 0.3s;
+        }
+        .resource_info {
+            opacity: 1;
+            transform: translateY(0px);
+            transition: transform 0.4s, opacity 0.1s;
+        }
+    }
+}
+.resource_info {
+    background: rgba($highlight, .85);
+    padding: 2em 10%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(100%);
+    top: auto;
+    bottom: 0;
+    h2 {
+        color: $white;
+        font-size: 2.5em;
+        line-height: 1;
+        text-transform: uppercase;
+        margin-bottom: 1em;
+    }
+
+    a {
+        transition: all .2s ease-in-out;
+        text-decoration: none;
+        border: 2px solid $white;
+        padding: 1em 1.5em;
+        border-radius: .5em;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 1em;
+        font-weight: 700;
+    }
+
+    .price {
+        display: inline;
+        color: $main;
+        padding-left: 1.5em;
+        font-weight: 700;
+        font-size: 1.25em;
+    }
+}
+.button:hover {
+    color: $main;
+    border: 2px solid $main;
+
+}
+
+
+
+
+
+
+@media only screen and (max-width: 1250px) {
+    .resources {
+        li {
+            width: 33.333%;
+        }
+    }
+}
+@media only screen and (max-width: 900px) {
+    .resources {
+        li {
+            width: 50%;
+        }
+    }
+
+    .banner {
+        h1 {
+            padding: 1.5em 0;
+            font-size: 3.5em;
+        }
+    }
+
+    nav {
+        a,
+        label {
+            font-size: 1.15em;
+            padding-right: 1em;
+        }
+        input[type="search"] {
+            font-size: 1.15em;
+            padding: 1.5em .5em;
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .resources {
+        li {
+            width: 100%;
+        }
+    }
+
+    .banner {
+        h1 {
+            padding: 2.5em 0;
+            font-size: 2.85em;
+        }
+    }
+
+    nav {
+        a {
+            display: none;
+        }
+        input[type="search"] {
+            font-size: 1.15em;
+            padding: 1.5em .5em;
+        }
+    }
+}
